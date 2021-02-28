@@ -1,0 +1,10 @@
+.c-primary-nav {
+	position: relative;
+	padding: theme('spacing.4') 0;
+	z-index: z('navigation');
+	&__wrapper {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+	}
+}

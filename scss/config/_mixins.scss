@@ -1,0 +1,207 @@
+// Common styles for psuedo elements
+@mixin psuedo($position: absolute) {
+	content: '';
+	display: block;
+	position: $position;
+}
+
+// Make an element a relative width/height, as long as it's content doesn't overflow
+@mixin aspect-ratio($arglist... /* $ratio or $width, $height */) {
+    $map: keywords($arglist);
+    $height: map-get($map, height) or nth-or-null($arglist, 2);
+    $width:  map-get($map, width)  or nth-or-null($arglist, 1);
+    $ratio:  map-get($map, ratio)  or if($width and $height, $width/$height, nth-or-null($arglist, 1)) or 1;
+    $padding: 1/$ratio * 100%;
+    &:before {
+    	content: '';
+    	float: left;
+    	padding-bottom: $padding;
+    	margin-right: -100%;
+    }
+    &:after {
+    	content: '';
+    	display: table;
+    	clear: both;
+    }
+}
+
+// Create CSS Triangles
+@mixin triangle($direction, $color: currentcolor, $size: 1em, $skew: 1) {
+	@if not index(top right bottom left, $direction) {
+		@error "Direction must be either `top`, `right`, `bottom` or `left`.";
+	}
+	width: 0;
+	height: 0;
+	border-#{$direction}: ($size * $skew) solid $color;
+
+	$perpendicular-borders: $size solid transparent;
+
+	@if $direction == top or $direction == bottom {
+		border-left: $perpendicular-borders;
+		border-right: $perpendicular-borders;
+	} @else if $direction == right or $direction == left {
+		border-bottom: $perpendicular-borders;
+		border-top: $perpendicular-borders;
+	}
+}
+
+// Make element fill its nearest positioned parent
+@mixin filler($position: absolute) {
+	position: $position;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	width: 100%;
+	height: 100%;
+}
+
+// Create a toggle button (with a plus (+) in the center
+@mixin toggle-button($size: 40px, $padding: 5px, $weight: 1px, $shape: square, $position: relative) {
+	display: inline-block;
+	position: $position;
+	width: $size;
+	height: $size;
+	cursor: pointer;
+	@if ($shape == 'square' or $shape == 'circle') {
+		border: $weight solid currentColor;
+	} @else {
+		border: 0;
+	}
+	@if ($shape == 'circle') {
+		border-radius: 50%;
+	}
+	&:before,
+	&:after {
+		content: '';
+		position: absolute;
+		display: inline-block;
+		background-color: currentColor;
+	}
+	&:before {
+		left: $padding;
+		right: $padding;
+		height: $weight;
+		top: 50%;
+		transform: translateY(-50%);
+	}
+	&:after {
+		top: $padding;
+		bottom: $padding;
+		width: $weight;
+		left: 50%;
+		transform: translateX(-50%);
+	}
+}
+
+// Clamp text to a number of lines
+@mixin line-clamp($lines: 2, $overflow: ellipsis, $font-size: $font-size-base, $line-height: $line-height-body) {
+    display: block;
+    display: -webkit-box;
+    white-space: normal;
+    -webkit-line-clamp: $lines;
+    /*! autoprefixer: ignore next */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: $overflow;
+    max-height: calc(#{$lines} * (#{$font-size * $line-height}));
+}
+
+// Create box shadow from default
+@mixin box-shadow($x: $shadow-offset-x, $y: $shadow-offset-y, $blur: $shadow-blur, $spread: $shadow-spread, $color: $shadow-color) {
+	box-shadow: $x $y $blur $spread $color;
+}
+
+// Set object fit and include polyfill hack
+@mixin object-fit($fit: cover, $position: null) {
+	object-fit: $fit;
+	@if ($position) {
+		object-position: $position;
+		font-family: 'object-fit: #{$fit}; object-position: #{$position}';
+	} @else {
+		font-family: 'object-fit: #{$fit}';
+	}
+}
+
+// Styles for when input elements are focused
+@mixin focus-styles {
+	outline: 0;
+	box-shadow: 0 0 4px theme('colors.primary');
+}
+
+// Styles to force browser to use GPU (normally to fix jank effect)
+@mixin gpu-styles {
+	backface-visibility: hidden;
+	transform: translateZ(0);
+}
+
+// style placeholders
+@mixin placeholder($nest: false) {
+	@if ($nest) {
+		::-webkit-input-placeholder {
+			@content;
+		}
+		::-moz-placeholder {
+			@content;
+		}
+		:-ms-input-placeholder {
+			@content;
+		}
+	} @else {
+		&::-webkit-input-placeholder {
+			@content;
+		}
+		&::-moz-placeholder {
+			@content;
+		}
+		&:-ms-input-placeholder {
+			@content;
+		}
+	}
+}
+
+@mixin heading-tags() {
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6 {
+		@content;
+	}
+}
+
+@mixin overlay {
+	@include filler(fixed);
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    z-index: z('overlay');
+    transform: translate3d(100%, 0, 0);
+    background-color: theme('colors.primary');
+    transition: $transition-medium transform;
+    &.is-open {
+        transform: translate3d(0, 0, 0);
+    }
+}
+
+// support hover on touch devices that use pointers
+@mixin do_hover() {
+	html.no-touchevents & {
+		&:hover {
+			@content;
+		}
+	}
+	html.touchevents & {
+		@media(hover: hover) and (pointer: fine) {
+			&:hover {
+				@content;
+			}
+		}
+	}
+}
+
+// reset list styling
+@mixin list-reset {
+	padding-left: 0;
+	list-style-type: none;
+}

@@ -1,0 +1,89 @@
+// Return null rather than throwing an error if index is outside list range.    
+@function nth-or-null($list, $index) {
+	@return if(length($list) >= $index, nth($list, $index), null);
+}
+
+/// Remove the unit of a length
+@function strip-unit($number) {
+	@if type-of($number) == 'number' and not unitless($number) {
+		@return $number / ($number * 0 + 1);
+	}
+	@return $number;
+}
+
+// Return a z-index value of a named layer in a z-layers map
+@function z($layer) {
+	@if not map-has-key($z-layers, $layer) {
+		@warn "No layer found for `#{$layer}` in $z-layers map. Property omitted.";
+	}
+	@return map-get($z-layers, $layer);
+}
+
+// Returns a em value based on pixels
+@function em($pixels, $context: $font-size-base) {
+	$pixels-no-unit: strip-unit($pixels);
+	$context-no-unit: strip-unit($context);
+	@return #{$pixels-no-unit/$context-no-unit}em;
+}
+
+// Converts a pixel value to rem
+@function convert-to-rem($value, $base-value: $font-size-base) {
+    $value: strip-unit($value) / strip-unit($base-value) * 1rem;
+    /* stylelint-disable-next-line length-zero-no-unit */
+    @if ($value == 0rem) {
+        $value: 0;
+    }
+    @return decimal-round($value, 2);
+}
+
+// Converts a number of pixel values to rems
+@function rem($values, $base-value: $font-size-base) {
+    $max: length($values);
+    @if ($max == 1) {
+        @return convert-to-rem(nth($values, 1), $base-value);
+    }
+    $remValues: ();
+    @for $i from 1 through $max {
+        $remValues: append($remValues, convert-to-rem(nth($values, $i), $base-value));
+    }
+    @return $remValues;
+}
+
+/// Map deep get function
+@function map-deep-get($map, $keys...) {
+    @each $key in $keys {
+        $map: map-get($map, $key);
+    }
+    @return $map;
+}
+
+// Round a number to specified digits.
+@function decimal-round($number, $digits: 3, $mode: round) {
+    $n: 1;
+    // $number must be a number
+    @if type-of($number) != number {
+        @warn '#{ $number } is not a number.';
+        @return $number;
+    }
+    // $digits must be a unitless number
+    @if type-of($digits) != number {
+        @warn '#{ $digits } is not a number.';
+        @return $number;
+    } @else if not unitless($digits) {
+        @warn '#{ $digits } has a unit.';
+        @return $number;
+    }
+    @for $i from 1 through $digits {
+        $n: $n * 10;
+    }
+    @if $mode == round {
+        @return round($number * $n) / $n;
+    } @else if $mode == ceil {
+        @return ceil($number * $n) / $n;
+    } @else if $mode == floor {
+        @return floor($number * $n) / $n;
+    } @else {
+        @warn '#{ $mode } is undefined keyword.';
+        @return $number;
+    }
+}

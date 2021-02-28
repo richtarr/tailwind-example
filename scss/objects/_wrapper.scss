@@ -1,0 +1,12 @@
+.o-wrapper {
+	width: $wrapper-width;
+	max-width: $wrapper-max-width;
+	position: relative;
+	margin: 0 auto;
+	@screen to-mobile-wrapper {
+		max-width: $wrapper-max-width-mobile;
+	}
+	&--narrow {
+		width: $wrapper-width-narrow;
+	}
+}

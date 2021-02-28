@@ -1,0 +1,55 @@
+.c-accordion {
+	$root: &;
+	&__item {
+		margin-bottom: theme('spacing.default');
+		&:last-child {
+			margin-bottom: 0;
+		}
+		.no-js &[open],
+		&.is-open {
+			#{$root}__toggle {
+				transform: rotate(45deg);
+			}
+			#{$root}__header {
+				color: theme('colors.primary');
+			}
+		}
+	}
+	&__header {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		cursor: pointer;
+		width: 100%;
+		list-style-image: none;
+		&:hover {
+			color: theme('colors.primary');
+		}
+	}
+	&__title {
+		margin-top: 4px;
+		margin-bottom: 0;
+		color: inherit;
+		transition: $transition;
+	}
+	&__toggle {
+		@include toggle-button($shape: none, $size: 36px, $weight: 2px);
+		flex-shrink: 0;
+		color: inherit;
+		outline: none;
+		transition: $transition;
+		&:before,
+		&:after {
+			transition: background-color $transition-timing;
+		}
+	}
+	&__content {
+		padding: theme('spacing.default') 0;
+		:last-child {
+			margin-bottom: 0 !important;
+		}
+	}
+	::-webkit-details-marker {
+		display: none;
+	}
+}

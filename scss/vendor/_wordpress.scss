@@ -1,0 +1,22 @@
+.aligncenter {
+    display: block;
+    margin: 0 auto theme('spacing.paragraph');
+}
+.alignleft {
+    float: left;
+    margin: 0 theme('spacing.paragraph') theme('spacing.paragraph') 0;
+}
+.alignright {
+    float: right;
+    margin: 0 0 theme('spacing.paragraph') theme('spacing.paragraph');
+}
+.wp-caption {
+    max-width: 100%;
+    margin: 0 0 theme('spacing.paragraph');
+    padding: theme('spacing.paragraph');
+    box-shadow: 0 0 60px 0 rgba(0, 0, 0, 0.1);
+}
+.wp-caption p {
+    margin: theme('spacing.paragraph') 0;
+    text-align: center;
+}

@@ -1,0 +1,41 @@
+.c-gallery-overlay {
+	&__close-button {
+		position: absolute;
+		top: theme('spacing.2');
+		right: theme('spacing.2');
+		color: rgba($white, 30%);
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		font-size: rem(40px);
+		line-height: 1;
+		width: rem(48px);
+		height: rem(48px);
+		z-index: z('content');
+		&:hover {
+			color: $white;
+		}
+	}
+	&__arrow-button {
+		position: absolute;
+		top: 50%;
+		transform: translateY(-50%);
+		z-index: z('content');
+		&--prev {
+			left: theme('spacing.4');
+		}
+		&--next {
+			right: theme('spacing.4');
+		}
+	}
+	&__image {
+		position: absolute;
+		max-width: calc(100% - #{rem(50px)});
+		max-height: calc(100% - #{rem(50px)});
+		width: auto;
+		height: auto;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+	}
+}

@@ -1,0 +1,67 @@
+html {
+	box-sizing: border-box;
+	font-size: $font-size-base;
+	color: theme('colors.text-body');
+	font-weight: theme('fontWeight.normal');
+	line-height: $line-height-body;
+	letter-spacing: $letter-spacing-body;
+}
+
+body {
+    font-family: $font-family-body;
+    width: 100vw;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+summary,
+details {
+    box-sizing: border-box;
+}
+
+input:not([type="checkbox"]):not([type="radio"]),
+textarea,
+select,
+button {
+    -webkit-appearance: none;
+}
+
+img {
+    @include gpu-styles;
+}
+
+fieldset {
+    border: 0;
+}
+
+input[type="button"],
+input[type="submit"],
+input[type="reset"],
+input[type="file"]::-webkit-file-upload-button,
+button {
+    padding: 0;
+    border: 0;
+    cursor: pointer;
+    line-height: $line-height-body;
+    letter-spacing: $letter-spacing-body;
+    transition: $transition;
+    color: inherit;
+    font-weight: theme('fontWeight.normal');
+}
+
+label {
+    cursor: pointer;
+    display: block;
+}
+
+input[name*="honeypot"] {
+    position: absolute;
+    z-index: -9999;
+    left: -9999px;
+    opacity: 0;
+}
+
+ul, ol {
+    max-width: 100%;
+}

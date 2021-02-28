@@ -1,0 +1,76 @@
+.o-choice {
+    $root: &;
+    display: flex;
+    cursor: pointer;
+    &__label {
+        text-align: left;
+        flex-grow: 1;
+    }
+    &__box {
+        display: inline-block;
+        height: 16px;
+        width: 16px;
+        border: 1px solid theme('colors.primary');
+        vertical-align: middle;
+        position: relative;
+        background-color: $white;
+        flex-shrink: 0;
+        margin-right: 10px;
+        margin-top: 6px;
+        transition: $transition;
+        &:after {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            opacity: 0;
+            height: 10px;
+            width: 10px;
+            content: ' ';
+            background-image: url('../../images/tick.svg');
+            background-size: auto 100%;
+            transition: $transition;
+        }
+    }
+    &__field {
+        &:checked {
+            ~ #{$root}__box {
+                background-color: theme('colors.primary');
+                &:after {
+                    opacity: 1;
+                }
+            }
+        }
+        &:focus {
+            ~ #{$root}__box {
+                @include focus-styles;
+            }
+        }
+    }
+    &--radio {
+        #{$root}__box {
+            border-radius: 50%;
+            &:after {
+                background-color: theme('colors.primary');
+                border-radius: 50%;
+                border: 1px solid transparent;
+                background-image: none;
+            }
+        }
+        #{$root}__field {
+            &:checked {
+                ~ #{$root}__box {
+                    background-color: transparent;
+                    &:after {
+                        opacity: 1;
+                    }
+                }
+            }
+        }
+    }
+    &:hover {
+        #{$root}__box {
+            @include focus-styles;
+        }
+    }
+}

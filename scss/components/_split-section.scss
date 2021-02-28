@@ -1,0 +1,13 @@
+.c-split-section {
+    display: flex;
+    align-items: flex-start;
+    &__content {
+        > :last-child {
+            margin-bottom: 0 !important;
+        }
+    }
+    &__media {
+        height: 100%;
+        min-height: rem(320px);
+    }
+}

@@ -1,0 +1,11 @@
+.o-overlay {
+    @include overlay;
+    &--opaque {
+        background-color: rgba($black, 0.8);
+    }
+    &__content {
+        padding-top: 200px;
+        text-align: center;
+        color: $white;
+    }
+}

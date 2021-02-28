@@ -1,0 +1,11 @@
+.o-button-wrap {
+    $root: &;
+    margin-left: calc(theme('spacing.4') / -2);
+	margin-right: calc(theme('spacing.4') / -2);
+    margin-bottom: calc(0 - theme('spacing.4'));
+    &__button {
+        margin-left: calc(theme('spacing.4') / 2);
+        margin-right: calc(theme('spacing.4') / 2);
+        margin-bottom: theme('spacing.4');
+    }
+}

@@ -1,0 +1,5 @@
+.u-focus {
+    &:focus {
+        @include focus-styles;
+    }
+}

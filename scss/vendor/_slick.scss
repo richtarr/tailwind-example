@@ -1,0 +1,113 @@
+
+.slick-slider {
+    position: relative;
+    display: block;
+    -webkit-touch-callout: none;
+    touch-action: pan-y;
+    -webkit-tap-highlight-color: transparent;
+}
+.slick-list {
+    position: relative;
+    overflow: hidden;
+    display: block;
+    margin: 0;
+    padding: 0;
+    &:focus {
+        outline: none;
+    }
+    &.dragging {
+        cursor: pointer;
+        cursor: hand;
+    }
+}
+.slick-slider .slick-track,
+.slick-slider .slick-list {
+    transform: translate3d(0, 0, 0);
+}
+
+.slick-track {
+    position: relative;
+    left: 0;
+    top: 0;
+    display: block;
+    &:before,
+    &:after {
+        content: "";
+        display: table;
+    }
+    &:after {
+        clear: both;
+    }
+    .slick-loading & {
+        visibility: hidden;
+    }
+}
+.slick-slide {
+    float: left;
+    height: 100%;
+    min-height: 1px;
+    [dir="rtl"] & {
+        float: right;
+    }
+    img {
+        display: block;
+    }
+    &.slick-loading img {
+        display: none;
+    }
+    display: none;
+    &.dragging img {
+        pointer-events: none;
+    }
+    .slick-initialized & {
+        display: block;
+    }
+    .slick-loading & {
+        visibility: hidden;
+    }
+    .slick-vertical & {
+        display: block;
+        height: auto;
+        border: 1px solid transparent;
+    }
+}
+.slick-arrow.slick-hidden {
+    display: none;
+}
+
+.slick-dots {
+	text-align: center;
+	width: 100%;
+    li {
+        display: inline-block;
+        &.slick-active,
+        &:hover {
+            button {
+                &:before {
+                    background-color: theme('colors.primary');
+                    transform: scale($slick-dots-button-dimensions-scale-ratio);
+                }
+            }
+        }
+    }
+    button {
+        display: block;
+        font-size: 0;
+        padding: $slick-dots-button-padding-y $slick-dots-button-padding-x;
+        &:before {
+            @include psuedo(relative);
+            background-color: currentColor;
+            width: $slick-dots-button-dimensions;
+            height: $slick-dots-button-dimensions;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: $transition transform, $transition background-color;
+        }
+    }
+}
+
+.slick-slide {
+	outline: none;
+	float: left;
+	height: 100%;
+}

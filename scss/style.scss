@@ -1,0 +1,64 @@
+@import 'config/functions';
+@import 'config/variables';
+@import 'config/mixins';
+
+@tailwind base;
+
+@layer base {
+	@import 'base/reset';
+	@import 'base/animations';
+	@import 'base/typography';
+}
+
+@import 'vendor/wordpress';
+@import 'vendor/slick';
+@import 'vendor/focus-visible';
+
+@tailwind components;
+
+@layer components {
+	@import 'objects/button-wrap';
+	@import 'objects/grid';
+	@import 'objects/icon';
+	@import 'objects/media';
+	@import 'objects/overlay';
+	@import 'objects/label';
+	@import 'objects/input';
+	@import 'objects/choice';
+	@import 'objects/wrapper';
+	@import 'objects/loader';
+	@import 'objects/video';
+	@import 'objects/section';
+	@import 'objects/field';
+	@import 'objects/arrow-button';
+
+	@import 'components/accordion';
+	@import 'components/button';
+	@import 'components/gallery-overlay';
+	@import 'components/hero';
+	@import 'components/icon-grid';
+	@import 'components/map';
+	@import 'components/primary-nav';
+	@import 'components/site-footer';
+	@import 'components/social-links';
+	@import 'components/split-section';
+	@import 'components/testimonial-slider';
+	@import 'components/video-banner';
+	@import 'components/nav-toggle';
+
+	@import 'scopes/standard-content';
+	@import 'scopes/wp-nav';
+}
+
+@layer utilities {
+	@responsive {
+		@import 'utilities/clamp';
+		@import 'utilities/fill';
+		@import 'utilities/focus';
+		@import 'utilities/ratio';
+		@import 'utilities/object-fit';
+		@import 'utilities/list-reset';
+	}
+}
+
+@import 'shame';

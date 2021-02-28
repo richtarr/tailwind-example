@@ -1,0 +1,71 @@
+// Colours
+$black: #000;
+$white: #fff;
+
+$color-facebook-blue: #3b5998;
+$color-twitter-blue: #1DA1F2;
+$color-linkedin-blue: #0077b5;
+$color-youtube-red: #FF0000;
+$color-instagram-pink: #e1306c;
+$color-pinterest-red: #bd081c;
+
+// Typography
+$helvetica: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+
+$font-family-heading: inherit;
+$font-family-body: inherit;
+
+$font-size-base: 16px; // must be px!
+
+$font-size-small: rem(12px);
+$font-size-large: rem(18px);
+
+$line-height-body: 1.5;
+
+$letter-spacing-body: 0.02em;
+$letter-spacing-large: 0.05em;
+
+// Animations and transitions
+$timing-short: .1s;
+$timing: .2s;
+$timing-medium: .35s;
+$timing-long: .5s;
+
+$transition-timing: $timing;
+$transition-timing-medium: $timing-medium;
+$animation-timing: $timing-long;
+
+$transition: $transition-timing;
+$transition-medium: $transition-timing-medium;
+
+// Wrappers
+$wrapper-width: 1200px;
+$wrapper-width-wide: 1400px;
+$wrapper-width-narrow: 800px;
+$wrapper-max-width: calc(100% - (theme('spacing.default') * 2));
+$wrapper-max-width-mobile: calc(100% - (theme('spacing.default') * 1));
+
+// Borders
+$border-radius: 5px;
+
+// Shadows
+$shadow-offset-x: 0;
+$shadow-offset-y: 0;
+$shadow-blur: 30px;
+$shadow-spread: 0;
+$shadow-color: rgba($black, 0.2);
+
+// Z Indexes
+$z-layers: (
+	'background'		: 0,
+	'base'				: 1,
+	'content'			: 10,
+	'navigation'		: 100,
+	'overlay'			: 1000,
+);
+
+// Slick
+$slick-dots-button-dimensions: 10px;
+$slick-dots-button-dimensions-scale-ratio: 1.2;
+$slick-dots-button-padding-x: 10px;
+$slick-dots-button-padding-y: 10px;

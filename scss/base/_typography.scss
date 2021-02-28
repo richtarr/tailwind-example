@@ -1,0 +1,85 @@
+::selection {
+	background-color: theme('colors.primary');
+	color: $white;
+}
+
+p {
+	margin: 0 auto theme('spacing.paragraph');
+	max-width: 100%;
+}
+
+a {
+	transition: $transition;
+	color: inherit;
+}
+
+@include heading-tags {
+	margin-top: 0;
+	margin-bottom: theme('spacing.heading');
+	color: currentColor;
+	font-weight: theme('fontWeight.bold');
+	font-family: $font-family-heading;
+	letter-spacing: $letter-spacing-large;
+	max-width: 100%;
+}
+
+.h1 {
+	font-size: rem(60px);
+	line-height: 1.2;
+	@screen to-responsive-headings {
+		font-size: rem(40px)
+	}
+}
+
+.h2 {
+	font-size: rem(50px);
+	line-height: 1.2;
+	@screen to-responsive-headings {
+		font-size: rem(34px)
+	}
+}
+
+.h3 {
+	font-size: rem(34px);
+	line-height: 1.2;
+	@screen to-responsive-headings {
+		font-size: rem(28px)
+	}
+}
+
+.h4 {
+	font-size: rem(28px);
+	line-height: 1.2;
+	@screen to-responsive-headings {
+		font-size: rem(20px)
+	}
+}
+
+.h5 {
+	font-size: rem(22px);
+	line-height: 1.2;
+}
+
+.h6 {
+	font-size: rem(18px);
+	line-height: 1.2;
+}
+
+h1 {
+	@extend .h1;
+}
+h2 {
+	@extend .h2;
+}
+h3 {
+	@extend .h3;
+}
+h4 {
+	@extend .h4;
+}
+h5 {
+	@extend .h5;
+}
+h6 {
+	@extend .h6;
+}

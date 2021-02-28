@@ -1,0 +1,14 @@
+.o-loader {
+	$size: 60px;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	margin-top: -($size / 2);
+	margin-left: -($size / 2);
+	border: 6px solid theme('colors.gray.600');
+	border-top-color: theme('colors.primary');
+	border-radius: 50%;
+	width: $size;
+	height: $size;
+	animation: spin 0.7s linear infinite;
+}

@@ -1,0 +1,43 @@
+.o-field {
+    $root: &;
+    position: relative;
+    margin: 0 0 theme('spacing.6');
+    &__label {
+        &--floating {
+            position: absolute;
+            left: 0;
+            top: -18px;
+            opacity: 0;
+        }
+    }
+    &__input {
+        &:focus {
+            & + #{$root}__label--floating {
+                opacity: 1;
+            }
+        }
+    }
+    span.error {
+		position: absolute;
+		right: 0;
+		top: 100%;
+		margin-top: 10px;
+		background-color: theme('colors.error-light');
+        color: theme('colors.error');
+		padding: rem(4px) rem(8px);
+		border-radius: $border-radius;
+        font-weight: theme('fontWeight.semibold');
+        z-index: z('content');
+        font-size: rem(14px);
+        white-space: nowrap;
+		&:before {
+			@include psuedo;
+			width: 14px;
+			height: 14px;
+			background-color: theme('colors.error-light');
+			top: 0;
+			right: 8px;
+			transform: translateY(-50%) rotate(45deg);
+		}
+	}
+}

@@ -1,0 +1,32 @@
+.o-arrow-button {
+	display: flex;
+	color: currentColor;
+	font-size: 0;
+	width: rem(48px);
+	height: rem(48px);
+	&:after {
+		content: '';
+		display: block;
+		margin: auto;
+		width: rem(20px);
+		height: rem(20px);
+		border: 3px solid;
+		border-bottom: 0;
+		border-radius: 1px;
+	}
+	&--prev {
+		&:after {
+			border-right: 0;
+			transform: rotate(-45deg);
+		}
+	}
+	&--next {
+		&:after {
+			border-left: 0;
+			transform: rotate(45deg);
+		}
+	}
+	&:hover {
+		color: theme('colors.primary');
+	}
+}

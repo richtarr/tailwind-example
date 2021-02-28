@@ -1,0 +1,50 @@
+.c-nav-toggle {
+	$root: &;
+	$padding: 10px;
+	$size: 46px;
+	width: 46px;
+	padding: $padding;
+	display: none;
+	align-items: center;
+	&__inner {
+		position: relative;
+		width: 100%;
+		height: $size - ($padding * 2);
+	}
+	&__line {
+		position: absolute;
+		border-radius: 9999px;
+		background-color: currentColor;
+		height: 2px;
+		transform: translateY(-50%);
+		transform-origin: 0 50%;
+		left: 0;
+		right: 0;
+		transition: $transition;
+		&--top {
+			top: 15%;
+		}
+		&--middle {
+			top: 50%;
+		}
+		&--bottom {
+			top: 85%;
+		}
+	}
+	.is-nav-open & {
+		#{$root}__line {
+			&--top {
+				transform: translateY(-50%) translateX(5px) rotate(45deg);
+			}
+			&--middle {
+				opacity: 0;
+			}
+			&--bottom {
+				transform: translateY(-50%) translateX(5px) rotate(-45deg);
+			}
+		}
+	}
+	@screen to-responsive-nav {
+		display: flex;
+	}
+}

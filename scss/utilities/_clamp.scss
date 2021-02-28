@@ -1,0 +1,7 @@
+.u-clamp {
+    @for $i from 1 through 3 {
+        &-#{$i} {
+            @include line-clamp(#{$i});
+        }
+    }
+}
